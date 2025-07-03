@@ -262,6 +262,7 @@ elif menu == "📊 Sintesi Economica":
 
     # === Output ===
     # === Output dettagliato ===
+    st.markdown("---")
     st.header("Dettaglio incasso giornalieri con adeguamento all'incasso minimo")
     st.write(f"Caffè:        {num_caffe_adeguamento} x {prezzo_caffe:.2f}€ = {incasso_caffe_adeguamento:.2f} €")
     st.write(f"Cappuccini:   {num_cappuccini_adeguamento} x {prezzo_cappuccino:.2f}€ = {incasso_cappuccino_adeguamento:.2f} €")
