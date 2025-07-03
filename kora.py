@@ -63,15 +63,38 @@ elif menu == "📊 Business Plan":
     # Tempi restituzione prestiti
     tempi_restituzione_prestito = totale_attrezzature/restituzione_prestito/12
 
+    st.header("Investimento iniziale")
 
+    st.write(f"Investimento iniziale ad oggi: {totale_attrezzature:.2f}€")
+    st.write(f"Rata mensile restituzione prestito: {restituzione_prestito:.2f}€")
+    st.write(f"Tempo restituzione prestito: {tempi_restituzione_prestito:.0f} anni")
+    st.markdown("---")
+
+    st.header("Dettaglio costi e coperti necessari")
     # Ricavo medio per coperto (approssimazione)
-    colazioni = 50
-    media_colazioni = 3.50
-    pranzi = 60
-    media_pranzi = 10
-    aperitivi = 40
-    media_aperitivi = 7.50
-    scontrino_medio =  ((colazioni * media_colazioni) + (pranzi * media_pranzi) + (aperitivi*media_aperitivi))/(colazioni + pranzi + aperitivi)
+    with st.expander("🧾 Modifica parametri per scontrino medio"):
+        st.markdown("Personalizza la quantità e il valore medio per categoria.")
+
+        colazioni = st.number_input("Numero colazioni giornaliere", min_value=0, value=50)
+        media_colazioni = st.number_input("Scontrino medio colazioni (€)", min_value=0.0, value=3.50, step=0.10)
+
+        pranzi = st.number_input("Numero pranzi giornalieri", min_value=0, value=60)
+        media_pranzi = st.number_input("Scontrino medio pranzi (€)", min_value=0.0, value=10.00, step=0.50)
+
+        aperitivi = st.number_input("Numero aperitivi giornalieri", min_value=0, value=40)
+        media_aperitivi = st.number_input("Scontrino medio aperitivi (€)", min_value=0.0, value=7.50, step=0.50)
+
+    # Calcolo scontrino medio
+    if (colazioni + pranzi + aperitivi) > 0:
+        scontrino_medio = (
+            (colazioni * media_colazioni) +
+            (pranzi * media_pranzi) +
+            (aperitivi * media_aperitivi)
+        ) / (colazioni + pranzi + aperitivi)
+    else:
+        scontrino_medio = 0
+
+    st.write(f"**Scontrino medio calcolato:** {scontrino_medio:.2f} €")
 
     # Coperti necessari giornalieri per andare in pari
     coperti_annuali_necessari = costi_fissi_annuali / scontrino_medio
@@ -79,17 +102,13 @@ elif menu == "📊 Business Plan":
     incasso_medio_giornaliero = coperti_giornalieri_necessari * scontrino_medio
     incasso_medio_mensile = incasso_medio_giornaliero * 250 / 12
 
-    st.header("Investimento iniziale")
 
-    st.write(f"Investimento iniziale ad oggi: {totale_attrezzature:.2f}€")
-    st.write(f"Rata mensile restituzione prestito: {restituzione_prestito:.2f}€")
-    st.write(f"Tempo restituzione prestito: {tempi_restituzione_prestito:.0f} anni")
 
 
 
 
     # Output
-    st.header("Dettaglio coperti")
+
     st.write(f"Costi fissi mensili totali (dipendenti + affitto + luce + materie prime): {costi_fissi_mensili:.2f}€")
     st.write(f"Costi fissi annuali totali (dipendenti + affitto + luce + materie prime): {costi_fissi_annuali:.2f}€")
     #print(f"Incasso annuo stimato attuale: {incasso_annuale_attuale:.2f}€")
