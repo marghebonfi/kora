@@ -7,7 +7,7 @@ st.set_page_config(page_title="kora", layout="centered")
 st.sidebar.title("☕ kora")
 menu = st.sidebar.radio(
     "Vai a:",
-    ["📘 Introduzione", "📊 Sintesi Economica", "🔢 Simulazione"]
+    ["📘 Introduzione", "📊 Business Plan", "🔢 Simulazione"]
     ,index=0
 )
 st.sidebar.info("Versione 1.0 – 3 Luglio 2025")
