@@ -217,9 +217,9 @@ elif menu == "📊 Business Plan":
     st.write("------------------------------------------")
     st.header ("Totale")
     st.write(f"Totale Incasso Giornaliero: {incasso_totale:,.2f} €")
-    st.write(f"Costi materie prime: {costi_materie_prime:,.2f} €")
-    st.write(f"Costi materie prime mensili: {costi_materie_prime_mensili:,.2f} €")
-    st.write(f"Costi materie prime annuali: {costi_materie_prime_annuali:,.2f} €")
+    #st.write(f"Costi materie prime: {costi_materie_prime:,.2f} €")
+    #st.write(f"Costi materie prime mensili: {costi_materie_prime_mensili:,.2f} €")
+    #st.write(f"Costi materie prime annuali: {costi_materie_prime_annuali:,.2f} €")
 
     #DETTAGLIO CON ADEGUAMENTO
 
@@ -303,9 +303,9 @@ con un margine del 3%.")
     st.write("------------------------------------------")
     st.header ("Totale")
     st.write(f"Totale Incasso Giornaliero: {incasso_totale_adeguamento:,.2f} €")
-    st.write(f"Costi materie prime: {costi_materie_prime_adeguamento:,.2f} €")
-    st.write(f"Costi materie prime mensili: {costi_materie_prime_mensili_adeguamento:,.2f} €")
-    st.write(f"Costi materie prime annuali: {costi_materie_prime_annuali_adeguamento:,.2f} €")
+    #st.write(f"Costi materie prime: {costi_materie_prime_adeguamento:,.2f} €")
+    #st.write(f"Costi materie prime mensili: {costi_materie_prime_mensili_adeguamento:,.2f} €")
+    #st.write(f"Costi materie prime annuali: {costi_materie_prime_annuali_adeguamento:,.2f} €")
 
     if st.button("Dettaglio"):
         # Confronto Incassi
