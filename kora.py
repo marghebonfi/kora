@@ -1,4 +1,3 @@
-
 import streamlit as st
 
 st.set_page_config(page_title="kora", layout="centered")
@@ -10,7 +9,7 @@ menu = st.sidebar.radio(
     ["📘 Introduzione", "📊 Sintesi Economica", "🔢 Simulazione"]
     ,index=0
 )
-st.sidebar.info("Versione 1.0 – Luglio 2025")
+st.sidebar.info("Versione 1.0 – 3 Luglio 2025")
 
 # === Pagina: Introduzione ===
 if menu == "📘 Introduzione":
