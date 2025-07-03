@@ -20,13 +20,13 @@ if menu == "📘 Introduzione":
     st.header("🥗 Cosa vogliamo realizzare")
     st.write("Il nostro locale sarà 100% vegetale, con prodotti provenienti da fornitori locali, colazioni, pranzi e aperitivi artigianali. Il piano superiore sarà uno spazio dedicato alla cultura, al co-working e galleria d’arte per artisti emergenti della zona. Sarà un luogo inclusivo, sostenibile, aperto alla comunità. Vogliamo offrire non solo cibo, ma anche cultura, ispirazione e condivisione.")
     st.write("""Puoi navigare tra:
-    \n- Una **sintesi economica** (investimenti, costi fissi, break-even)
+    \n- Il **business plan** (investimenti, costi fissi, break-even)
     \n- Una sezione di **simulazione dinamica** giornaliera
     """)
 
 # === Pagina: Sintesi Economica ===
-elif menu == "📊 Sintesi Economica":
-    st.title("📊 Sintesi Economica")
+elif menu == "📊 Business Plan":
+    st.title("📊 Business Plan")
 # === Costi Attrezzature ===
     cucina = 100000
     macchina_caffe = 13000
