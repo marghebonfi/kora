@@ -265,8 +265,8 @@ elif menu == "📊 Sintesi Economica":
     # === Output dettagliato ===
     st.markdown("---")
     st.info("💡 Questa sezione mostra una **simulazione automatica** per raggiungere l'incasso minimo necessario a coprire i costi fissi. \
-I volumi di vendita giornalieri (caffè, pranzi, aperitivi, ecc.) vengono aumentati in proporzione fino a generare l’incasso medio necessario, \
-con un margine del 3% in più per sicurezza.")
+I volumi di vendita giornalieri (caffè, pranzi, aperitivi, ecc.) vengono modificati in proporzione fino a generare l’incasso medio necessario, \
+con un margine del 3%.")
     st.header("Dettaglio incasso giornalieri con adeguamento all'incasso minimo")
     st.write(f"Caffè:        {num_caffe_adeguamento} x {prezzo_caffe:.2f}€ = {incasso_caffe_adeguamento:.2f} €")
     st.write(f"Cappuccini:   {num_cappuccini_adeguamento} x {prezzo_cappuccino:.2f}€ = {incasso_cappuccino_adeguamento:.2f} €")
@@ -316,7 +316,7 @@ con un margine del 3% in più per sicurezza.")
         }
 
         df_confronto = pd.DataFrame(data)
-        st.table(df_confronto)
+        st.table(df_confronto.set_index("Prodotto"))
 
 
 elif menu == "🔢 Simulazione":
