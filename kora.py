@@ -315,7 +315,7 @@ elif menu == "🔢 Simulazione":
 
 
         st.write(f"**Scontrino medio calcolato:** {scontrino_medio:.2f} €")
-        st.write(f"**Coperti giornalieri per copertura costi:** {coperti_giornalieri_necessari:.0f}")
+        st.write(f"**Scontrini giornalieri per copertura costi:** {coperti_giornalieri_necessari:.0f}")
         st.write(f"**Incasso medio giornaliero necessario:** {incasso_medio_giornaliero:.2f} €")
         st.write(f"**Incasso medio mensile necessario:** {incasso_medio_mensile:.2f} €")
 
