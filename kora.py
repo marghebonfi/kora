@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 st.set_page_config(page_title="kora", layout="centered")
 
@@ -263,6 +264,9 @@ elif menu == "📊 Sintesi Economica":
     # === Output ===
     # === Output dettagliato ===
     st.markdown("---")
+    st.info("💡 Questa sezione mostra una **simulazione automatica** per raggiungere l'incasso minimo necessario a coprire i costi fissi. \
+I volumi di vendita giornalieri (caffè, pranzi, aperitivi, ecc.) vengono aumentati in proporzione fino a generare l’incasso medio necessario, \
+con un margine del 3% in più per sicurezza.")
     st.header("Dettaglio incasso giornalieri con adeguamento all'incasso minimo")
     st.write(f"Caffè:        {num_caffe_adeguamento} x {prezzo_caffe:.2f}€ = {incasso_caffe_adeguamento:.2f} €")
     st.write(f"Cappuccini:   {num_cappuccini_adeguamento} x {prezzo_cappuccino:.2f}€ = {incasso_cappuccino_adeguamento:.2f} €")
@@ -280,6 +284,39 @@ elif menu == "📊 Sintesi Economica":
     st.write(f"Costi materie prime mensili: {costi_materie_prime_mensili_adeguamento:.2f} €")
     st.write(f"Costi materie prime annuali: {costi_materie_prime_annuali_adeguamento:.2f} €")
 
+    if st.button("Dettaglio"):
+        # Confronto Incassi
+        col1, col2 = st.columns(2)
+        col1.metric("Incasso attuale", f"{incasso_totale:.2f} €")
+        col2.metric("Incasso minimo necessario", f"{incasso_medio_giornaliero:.2f} €")
+
+        # Calcolo della differenza
+        delta_incasso = incasso_medio_giornaliero - incasso_totale
+        col2.metric("Differenza da colmare", f"{delta_incasso:.2f} €")
+
+        st.markdown("---")
+
+        # Confronto volumi tra vendite attuali e adeguate
+        st.subheader("📈 Confronto volumi di vendita")
+
+        data = {
+            "Prodotto": ["Caffè", "Cappuccini", "Brioches", "Pranzi", "Asporto", "Birre", "Spritz", "Drink base", "Drink premium"],
+            "Volume attuale": [
+                num_caffe, num_cappuccini, num_brioche,
+                num_pranzi, num_asporto,
+                num_birre, num_spritz,
+                num_drink_base, num_drink_premium
+            ],
+            "Volume adeguato": [
+                num_caffe_adeguamento, num_cappuccini_adeguamento, num_brioche_adeguamento,
+                num_pranzi_adeguamento, num_asporto_adeguamento,
+                num_birre_adeguamento, num_spritz_adeguamento,
+                num_drink_base_adeguamento, num_drink_premium_adeguamento
+            ],
+        }
+
+        df_confronto = pd.DataFrame(data)
+        st.table(df_confronto)
 
 
 elif menu == "🔢 Simulazione":
