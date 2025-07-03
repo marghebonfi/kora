@@ -112,8 +112,8 @@ elif menu == "📊 Business Plan":
     st.write(f"Costi fissi mensili totali (dipendenti + affitto + luce + materie prime): {costi_fissi_mensili:.2f}€")
     st.write(f"Costi fissi annuali totali (dipendenti + affitto + luce + materie prime): {costi_fissi_annuali:.2f}€")
     #print(f"Incasso annuo stimato attuale: {incasso_annuale_attuale:.2f}€")
-    st.write(f"Coperti medi giornalieri ({scontrino_medio:.2f}€ a coperto) necessari per andare in pari: {coperti_giornalieri_necessari:.0f}")
-    st.write(f"Incasso medio giornalierio con {coperti_giornalieri_necessari:.0f} coperti con uno scontrino medio di {scontrino_medio:.2f}€ : {incasso_medio_giornaliero:.2f}€")
+    st.write(f"Scontrini medi giornalieri ({scontrino_medio:.2f}€ a coperto) necessari per coprire i costri: {coperti_giornalieri_necessari:.0f}")
+    st.write(f"Incasso medio giornalierio con {coperti_giornalieri_necessari:.0f} scontrini, scontrino medio di {scontrino_medio:.2f}€ : {incasso_medio_giornaliero:.2f}€")
     st.write(f"Incasso medio mensile con {coperti_giornalieri_necessari:.0f} scontrini, con uno scontrino medio di {scontrino_medio:.2f}€ : {incasso_medio_mensile:.2f}€")
 
     # === Prezzi di vendita (modificabili) ===
