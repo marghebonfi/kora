@@ -120,15 +120,15 @@ elif menu == "📊 Sintesi Economica":
     costo_drink_premium = 3.00
 
     # === Quantità vendute giornalmente (stimate per un bar in centro storico) ===
-    num_caffe = 120
-    num_cappuccini = 30
-    num_brioche = 20
-    num_pranzi = 60
-    num_asporto = 20
-    num_birre = 20
-    num_spritz = 30
-    num_drink_base = 20
-    num_drink_premium = 10
+    num_caffe = 100
+    num_cappuccini = 25
+    num_brioche = 15
+    num_pranzi = 40
+    num_asporto = 15
+    num_birre = 15
+    num_spritz = 20
+    num_drink_base = 10
+    num_drink_premium = 5
 
     # === Calcolo incassi per voce ===
     incasso_caffe = num_caffe * prezzo_caffe
