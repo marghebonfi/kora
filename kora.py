@@ -79,7 +79,7 @@ elif menu == "📊 Sintesi Economica":
     incasso_medio_giornaliero = coperti_giornalieri_necessari * scontrino_medio
     incasso_medio_mensile = incasso_medio_giornaliero * 250 / 12
 
-    st.header("INVESTIMENTO INIZIALE")
+    st.header("Investimento iniziale")
 
     st.write(f"Investimento iniziale ad oggi: {totale_attrezzature:.2f}€")
     st.write(f"Rata mensile restituzione prestito: {restituzione_prestito:.2f}€")
@@ -89,7 +89,7 @@ elif menu == "📊 Sintesi Economica":
 
 
     # Output
-    st.header("\nDETTAGLIO COPERTI")
+    st.header("Dettaglio coperti")
     st.write(f"Costi fissi mensili totali (dipendenti + affitto + luce + materie prime): {costi_fissi_mensili:.2f}€")
     st.write(f"Costi fissi annuali totali (dipendenti + affitto + luce + materie prime): {costi_fissi_annuali:.2f}€")
     #print(f"Incasso annuo stimato attuale: {incasso_annuale_attuale:.2f}€")
@@ -181,7 +181,7 @@ elif menu == "📊 Sintesi Economica":
 
     # === Output ===
     # === Output dettagliato ===
-    st.header("\nDETTAGLIO INCASSO GIORNALIERO BASATO SU STATISTICHE DI UN BAR IN CENTRO STORICO (50.000 abitanti/città)")
+    st.header("Dettaglio incasso giornaliero basato su statistiche di un bar in centro storico (50.000 abitanti/città)")
     st.write(f"Caffè:        {num_caffe} x {prezzo_caffe:.2f}€ = {incasso_caffe:.2f} €")
     st.write(f"Cappuccini:   {num_cappuccini} x {prezzo_cappuccino:.2f}€ = {incasso_cappuccino:.2f} €")
     st.write(f"Brioches:     {num_brioche} x {prezzo_brioche:.2f}€ = {incasso_brioche:.2f} €")
@@ -192,7 +192,7 @@ elif menu == "📊 Sintesi Economica":
     st.write(f"Drink base:   {num_drink_base} x {prezzo_drink_base:.2f}€ = {incasso_drink_base:.2f} €")
     st.write(f"Drink premium:{num_drink_premium} x {prezzo_drink_premium:.2f}€ = {incasso_drink_premium:.2f} €")
     st.write("------------------------------------------")
-    st.header ("TOTALE")
+    st.header ("Totale")
     st.write(f"Totale Incasso Giornaliero: {incasso_totale:.2f} €")
     st.write(f"Costi materie prime: {costi_materie_prime:.2f} €")
     st.write(f"Costi materie prime mensili: {costi_materie_prime_mensili:.2f} €")
@@ -263,7 +263,7 @@ elif menu == "📊 Sintesi Economica":
 
     # === Output ===
     # === Output dettagliato ===
-    st.header("\nDETTAGLIO INCASSO GIORNALIERO CON ADEGUAMENTO ALL'INCASSO MINIMO")
+    st.header("Dettaglio incasso giornalieri con adeguamento all'incasso minimo")
     st.write(f"Caffè:        {num_caffe_adeguamento} x {prezzo_caffe:.2f}€ = {incasso_caffe_adeguamento:.2f} €")
     st.write(f"Cappuccini:   {num_cappuccini_adeguamento} x {prezzo_cappuccino:.2f}€ = {incasso_cappuccino_adeguamento:.2f} €")
     st.write(f"Brioches:     {num_brioche_adeguamento} x {prezzo_brioche:.2f}€ = {incasso_brioche_adeguamento:.2f} €")
@@ -274,7 +274,7 @@ elif menu == "📊 Sintesi Economica":
     st.write(f"Drink base:   {num_drink_base_adeguamento} x {prezzo_drink_base:.2f}€ = {incasso_drink_base_adeguamento:.2f} €")
     st.write(f"Drink premium:{num_drink_premium_adeguamento} x {prezzo_drink_premium:.2f}€ = {incasso_drink_premium_adeguamento:.2f} €")
     st.write("------------------------------------------")
-    st.header ("TOTALE")
+    st.header ("Totale")
     st.write(f"Totale Incasso Giornaliero: {incasso_totale_adeguamento:.2f} €")
     st.write(f"Costi materie prime: {costi_materie_prime_adeguamento:.2f} €")
     st.write(f"Costi materie prime mensili: {costi_materie_prime_mensili_adeguamento:.2f} €")
