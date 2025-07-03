@@ -2,8 +2,7 @@ import streamlit as st
 import pandas as pd
 
 st.set_page_config(page_title="kora", layout="centered")
-def format_ch(valore):
-    return f"{valore:,.2f}".replace(",", "'")
+
 
 st.sidebar.title("☕ kora")
 menu = st.sidebar.radio(
@@ -66,8 +65,8 @@ elif menu == "📊 Business Plan":
 
     st.header("Investimento iniziale")
 
-    st.write(f"Investimento iniziale ad oggi: {format_ch(totale_attrezzature)}€")
-    st.write(f"Rata mensile restituzione prestito: {format_ch(restituzione_prestito)}€")
+    st.write(f"Investimento iniziale ad oggi: {totale_attrezzature:,.2f}€")
+    st.write(f"Rata mensile restituzione prestito: {restituzione_prestito:,.2f}€")
     st.write(f"Tempo restituzione prestito: {tempi_restituzione_prestito:.0f} anni")
     st.markdown("---")
 
@@ -95,7 +94,7 @@ elif menu == "📊 Business Plan":
     else:
         scontrino_medio = 0
 
-    st.write(f"**Scontrino medio calcolato:** {scontrino_medio:.2f} €")
+    st.write(f"**Scontrino medio calcolato:** {scontrino_medio:,.2f} €")
 
     # Coperti necessari giornalieri per andare in pari
     coperti_annuali_necessari = costi_fissi_annuali / scontrino_medio
@@ -110,12 +109,12 @@ elif menu == "📊 Business Plan":
 
     # Output
 
-    st.write(f"Costi fissi mensili totali (dipendenti + affitto + luce + materie prime): {costi_fissi_mensili:.2f}€")
-    st.write(f"Costi fissi annuali totali (dipendenti + affitto + luce + materie prime): {costi_fissi_annuali:.2f}€")
-    #print(f"Incasso annuo stimato attuale: {incasso_annuale_attuale:.2f}€")
-    st.write(f"Scontrini medi giornalieri ({scontrino_medio:.2f}€ a coperto) necessari per coprire i costri: {coperti_giornalieri_necessari:.0f}")
-    st.write(f"Incasso medio giornalierio con {coperti_giornalieri_necessari:.0f} scontrini, scontrino medio di {scontrino_medio:.2f}€ : {format_ch(incasso_medio_giornaliero)}€")
-    st.write(f"Incasso medio mensile con {coperti_giornalieri_necessari:.0f} scontrini, con uno scontrino medio di {scontrino_medio:.2f}€ : {format_ch(incasso_medio_mensile)}€")
+    st.write(f"Costi fissi mensili totali (dipendenti + affitto + luce + materie prime): {costi_fissi_mensili:,.2f}€")
+    st.write(f"Costi fissi annuali totali (dipendenti + affitto + luce + materie prime): {costi_fissi_annuali:,.2f}€")
+    #print(f"Incasso annuo stimato attuale: {incasso_annuale_attuale:,.2f}€")
+    st.write(f"Scontrini medi giornalieri ({scontrino_medio:,.2f}€ a coperto) necessari per coprire i costri: {coperti_giornalieri_necessari:.0f}")
+    st.write(f"Incasso medio giornalierio con {coperti_giornalieri_necessari:.0f} scontrini, scontrino medio di {scontrino_medio:,.2f}€ : {incasso_medio_giornaliero:,.2f}€")
+    st.write(f"Incasso medio mensile con {coperti_giornalieri_necessari:.0f} scontrini, con uno scontrino medio di {scontrino_medio:,.2f}€ : {incasso_medio_mensile:,.2f}€")
 
     # === Prezzi di vendita (modificabili) ===
     prezzo_caffe = 1.40
@@ -206,21 +205,21 @@ elif menu == "📊 Business Plan":
     # === Output ===
     # === Output dettagliato ===
 
-    st.write(f"Caffè:        {num_caffe} x {prezzo_caffe:.2f}€ = {incasso_caffe:.2f} €")
-    st.write(f"Cappuccini:   {num_cappuccini} x {prezzo_cappuccino:.2f}€ = {incasso_cappuccino:.2f} €")
-    st.write(f"Brioches:     {num_brioche} x {prezzo_brioche:.2f}€ = {incasso_brioche:.2f} €")
-    st.write(f"Pranzi:       {num_pranzi} x {prezzo_pranzo:.2f}€ = {incasso_pranzi:.2f} €")
-    st.write(f"Asporto:      {num_asporto} x {prezzo_asporto:.2f}€ = {incasso_asporto:.2f} €")
-    st.write(f"Birre:        {num_birre} x {prezzo_birra:.2f}€ = {incasso_birre:.2f} €")
-    st.write(f"Spritz:       {num_spritz} x {prezzo_spritz:.2f}€ = {incasso_spritz:.2f} €")
-    st.write(f"Drink base:   {num_drink_base} x {prezzo_drink_base:.2f}€ = {incasso_drink_base:.2f} €")
-    st.write(f"Drink premium:{num_drink_premium} x {prezzo_drink_premium:.2f}€ = {incasso_drink_premium:.2f} €")
+    st.write(f"Caffè:        {num_caffe} x {prezzo_caffe:,.2f}€ = {incasso_caffe:,.2f} €")
+    st.write(f"Cappuccini:   {num_cappuccini} x {prezzo_cappuccino:,.2f}€ = {incasso_cappuccino:,.2f} €")
+    st.write(f"Brioches:     {num_brioche} x {prezzo_brioche:,.2f}€ = {incasso_brioche:,.2f} €")
+    st.write(f"Pranzi:       {num_pranzi} x {prezzo_pranzo:,.2f}€ = {incasso_pranzi:,.2f} €")
+    st.write(f"Asporto:      {num_asporto} x {prezzo_asporto:,.2f}€ = {incasso_asporto:,.2f} €")
+    st.write(f"Birre:        {num_birre} x {prezzo_birra:,.2f}€ = {incasso_birre:,.2f} €")
+    st.write(f"Spritz:       {num_spritz} x {prezzo_spritz:,.2f}€ = {incasso_spritz:,.2f} €")
+    st.write(f"Drink base:   {num_drink_base} x {prezzo_drink_base:,.2f}€ = {incasso_drink_base:,.2f} €")
+    st.write(f"Drink premium:{num_drink_premium} x {prezzo_drink_premium:,.2f}€ = {incasso_drink_premium:,.2f} €")
     st.write("------------------------------------------")
     st.header ("Totale")
-    st.write(f"Totale Incasso Giornaliero: {incasso_totale:.2f} €")
-    st.write(f"Costi materie prime: {costi_materie_prime:.2f} €")
-    st.write(f"Costi materie prime mensili: {format_ch(costi_materie_prime_mensili)} €")
-    st.write(f"Costi materie prime annuali: {format_ch(costi_materie_prime_annuali)} €")
+    st.write(f"Totale Incasso Giornaliero: {incasso_totale:,.2f} €")
+    st.write(f"Costi materie prime: {costi_materie_prime:,.2f} €")
+    st.write(f"Costi materie prime mensili: {costi_materie_prime_mensili:,.2f} €")
+    st.write(f"Costi materie prime annuali: {costi_materie_prime_annuali:,.2f} €")
 
     #DETTAGLIO CON ADEGUAMENTO
 
@@ -292,31 +291,31 @@ elif menu == "📊 Business Plan":
 I volumi di vendita giornalieri (caffè, pranzi, aperitivi, ecc.) vengono modificati in proporzione fino a generare l’incasso medio necessario, \
 con un margine del 3%.")
     st.header("Dettaglio incasso giornalieri con adeguamento all'incasso minimo")
-    st.write(f"Caffè:        {num_caffe_adeguamento} x {prezzo_caffe:.2f}€ = {incasso_caffe_adeguamento:.2f} €")
-    st.write(f"Cappuccini:   {num_cappuccini_adeguamento} x {prezzo_cappuccino:.2f}€ = {incasso_cappuccino_adeguamento:.2f} €")
-    st.write(f"Brioches:     {num_brioche_adeguamento} x {prezzo_brioche:.2f}€ = {incasso_brioche_adeguamento:.2f} €")
-    st.write(f"Pranzi:       {num_pranzi_adeguamento} x {prezzo_pranzo:.2f}€ = {incasso_pranzi_adeguamento:.2f} €")
-    st.write(f"Asporto:      {num_asporto_adeguamento} x {prezzo_asporto:.2f}€ = {incasso_asporto_adeguamento:.2f} €")
-    st.write(f"Birre:        {num_birre_adeguamento} x {prezzo_birra:.2f}€ = {incasso_birre_adeguamento:.2f} €")
-    st.write(f"Spritz:       {num_spritz_adeguamento} x {prezzo_spritz:.2f}€ = {incasso_spritz_adeguamento:.2f} €")
-    st.write(f"Drink base:   {num_drink_base_adeguamento} x {prezzo_drink_base:.2f}€ = {incasso_drink_base_adeguamento:.2f} €")
-    st.write(f"Drink premium:{num_drink_premium_adeguamento} x {prezzo_drink_premium:.2f}€ = {incasso_drink_premium_adeguamento:.2f} €")
+    st.write(f"Caffè:        {num_caffe_adeguamento} x {prezzo_caffe:,.2f}€ = {incasso_caffe_adeguamento:,.2f} €")
+    st.write(f"Cappuccini:   {num_cappuccini_adeguamento} x {prezzo_cappuccino:,.2f}€ = {incasso_cappuccino_adeguamento:,.2f} €")
+    st.write(f"Brioches:     {num_brioche_adeguamento} x {prezzo_brioche:,.2f}€ = {incasso_brioche_adeguamento:,.2f} €")
+    st.write(f"Pranzi:       {num_pranzi_adeguamento} x {prezzo_pranzo:,.2f}€ = {incasso_pranzi_adeguamento:,.2f} €")
+    st.write(f"Asporto:      {num_asporto_adeguamento} x {prezzo_asporto:,.2f}€ = {incasso_asporto_adeguamento:,.2f} €")
+    st.write(f"Birre:        {num_birre_adeguamento} x {prezzo_birra:,.2f}€ = {incasso_birre_adeguamento:,.2f} €")
+    st.write(f"Spritz:       {num_spritz_adeguamento} x {prezzo_spritz:,.2f}€ = {incasso_spritz_adeguamento:,.2f} €")
+    st.write(f"Drink base:   {num_drink_base_adeguamento} x {prezzo_drink_base:,.2f}€ = {incasso_drink_base_adeguamento:,.2f} €")
+    st.write(f"Drink premium:{num_drink_premium_adeguamento} x {prezzo_drink_premium:,.2f}€ = {incasso_drink_premium_adeguamento:,.2f} €")
     st.write("------------------------------------------")
     st.header ("Totale")
-    st.write(f"Totale Incasso Giornaliero: {incasso_totale_adeguamento:.2f} €")
-    st.write(f"Costi materie prime: {costi_materie_prime_adeguamento:.2f} €")
-    st.write(f"Costi materie prime mensili: {format_ch(costi_materie_prime_mensili_adeguamento)} €")
-    st.write(f"Costi materie prime annuali: {format_ch(costi_materie_prime_annuali_adeguamento)} €")
+    st.write(f"Totale Incasso Giornaliero: {incasso_totale_adeguamento:,.2f} €")
+    st.write(f"Costi materie prime: {costi_materie_prime_adeguamento:,.2f} €")
+    st.write(f"Costi materie prime mensili: {costi_materie_prime_mensili_adeguamento:,.2f} €")
+    st.write(f"Costi materie prime annuali: {costi_materie_prime_annuali_adeguamento:,.2f} €")
 
     if st.button("Dettaglio"):
         # Confronto Incassi
         col1, col2 = st.columns(2)
-        col1.metric("Incasso attuale", f"{incasso_totale:.2f} €")
-        col2.metric("Incasso minimo necessario", f"{incasso_medio_giornaliero:.2f} €")
+        col1.metric("Incasso attuale", f"{incasso_totale:,.2f} €")
+        col2.metric("Incasso minimo necessario", f"{incasso_medio_giornaliero:,.2f} €")
 
         # Calcolo della differenza
         delta_incasso = incasso_medio_giornaliero - incasso_totale
-        col2.metric("Differenza da colmare", f"{delta_incasso:.2f} €")
+        col2.metric("Differenza da colmare", f"{delta_incasso:,.2f} €")
 
         st.markdown("---")
 
@@ -376,10 +375,10 @@ elif menu == "🔢 Simulazione":
         incasso_medio_mensile = incasso_medio_giornaliero * giorni_lavorati_annui / 12
 
 
-        st.write(f"**Scontrino medio calcolato:** {scontrino_medio:.2f} €")
+        st.write(f"**Scontrino medio calcolato:** {scontrino_medio:,.2f} €")
         st.write(f"**Scontrini giornalieri per copertura costi:** {coperti_giornalieri_necessari:.0f}")
-        st.write(f"**Incasso medio giornaliero necessario:** {incasso_medio_giornaliero:.2f} €")
-        st.write(f"**Incasso medio mensile necessario:** {format_ch(incasso_medio_mensile)} €")
+        st.write(f"**Incasso medio giornaliero necessario:** {incasso_medio_giornaliero:,.2f} €")
+        st.write(f"**Incasso medio mensile necessario:** {incasso_medio_mensile:,.2f} €")
 
     st.markdown("---")
     st.info("👉 Puoi esportare i dati manualmente o integrarli con Google Sheets/Excel per confronti più avanzati.")
