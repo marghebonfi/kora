@@ -202,15 +202,15 @@ elif menu == "📊 Sintesi Economica":
 
     # === Quantità vendute giornalmente (stimate per un bar in centro storico) con adeguamento===
     adeguamento = incasso_medio_giornaliero/incasso_totale*1.03
-    num_caffe_adeguamento = int(adeguamento * 120)
-    num_cappuccini_adeguamento = int(adeguamento * 30)
-    num_brioche_adeguamento = int(adeguamento * 20)
-    num_pranzi_adeguamento = int(adeguamento * 60)
-    num_asporto_adeguamento = int(adeguamento * 20)
-    num_birre_adeguamento = int(adeguamento * 20)
-    num_spritz_adeguamento = int(adeguamento * 30)
-    num_drink_base_adeguamento = int(adeguamento * 20)
-    num_drink_premium_adeguamento = int(adeguamento * 10)
+    num_caffe_adeguamento = int(adeguamento * num_caffe)
+    num_cappuccini_adeguamento = int(adeguamento * num_cappuccini)
+    num_brioche_adeguamento = int(adeguamento * num_brioche)
+    num_pranzi_adeguamento = int(adeguamento * num_pranzi)
+    num_asporto_adeguamento = int(adeguamento * num_asporto)
+    num_birre_adeguamento = int(adeguamento * num_birre)
+    num_spritz_adeguamento = int(adeguamento * num_spritz)
+    num_drink_base_adeguamento = int(adeguamento * num_drink_base)
+    num_drink_premium_adeguamento = int(adeguamento * num_drink_premium)
 
     # === Calcolo incassi per voce ===
     incasso_caffe_adeguamento = num_caffe_adeguamento * prezzo_caffe
