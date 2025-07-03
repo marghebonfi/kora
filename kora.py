@@ -120,7 +120,7 @@ elif menu == "📊 Sintesi Economica":
     costo_drink_premium = 3.00
 
     # === Quantità vendute giornalmente (stimate per un bar in centro storico) ===
-
+    st.header("Dettaglio incasso giornaliero basato su statistiche di un bar in centro storico (50.000 abitanti/città)")
     with st.expander("🔧 Modifica volumi giornalieri (opzionale)"):
         st.markdown("Inserisci qui i valori stimati per ogni voce di incasso giornaliero.")
 
@@ -185,7 +185,7 @@ elif menu == "📊 Sintesi Economica":
 
     # === Output ===
     # === Output dettagliato ===
-    st.header("Dettaglio incasso giornaliero basato su statistiche di un bar in centro storico (50.000 abitanti/città)")
+
     st.write(f"Caffè:        {num_caffe} x {prezzo_caffe:.2f}€ = {incasso_caffe:.2f} €")
     st.write(f"Cappuccini:   {num_cappuccini} x {prezzo_cappuccino:.2f}€ = {incasso_cappuccino:.2f} €")
     st.write(f"Brioches:     {num_brioche} x {prezzo_brioche:.2f}€ = {incasso_brioche:.2f} €")
