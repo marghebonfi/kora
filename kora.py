@@ -192,6 +192,7 @@ elif menu == "📊 Sintesi Economica":
     st.write(f"Drink base:   {num_drink_base} x {prezzo_drink_base:.2f}€ = {incasso_drink_base:.2f} €")
     st.write(f"Drink premium:{num_drink_premium} x {prezzo_drink_premium:.2f}€ = {incasso_drink_premium:.2f} €")
     st.write("------------------------------------------")
+    st.header ("TOTALE")
     st.write(f"Totale Incasso Giornaliero: {incasso_totale:.2f} €")
     st.write(f"Costi materie prime: {costi_materie_prime:.2f} €")
     st.write(f"Costi materie prime mensili: {costi_materie_prime_mensili:.2f} €")
