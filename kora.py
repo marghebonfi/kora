@@ -120,15 +120,19 @@ elif menu == "📊 Sintesi Economica":
     costo_drink_premium = 3.00
 
     # === Quantità vendute giornalmente (stimate per un bar in centro storico) ===
-    num_caffe = 100
-    num_cappuccini = 25
-    num_brioche = 15
-    num_pranzi = 40
-    num_asporto = 15
-    num_birre = 15
-    num_spritz = 20
-    num_drink_base = 10
-    num_drink_premium = 5
+
+    with st.expander("🔧 Modifica volumi giornalieri (opzionale)"):
+        st.markdown("Inserisci qui i valori stimati per ogni voce di incasso giornaliero.")
+
+        num_caffe = st.number_input("Caffè venduti al giorno", min_value=0, value=100)
+        num_cappuccini = st.number_input("Cappuccini venduti al giorno", min_value=0, value=25)
+        num_brioche = st.number_input("Brioches vendute al giorno", min_value=0, value=15)
+        num_pranzi = st.number_input("Pranzi serviti al giorno", min_value=0, value=40)
+        num_asporto = st.number_input("Piatti asporto al giorno", min_value=0, value=15)
+        num_birre = st.number_input("Birre vendute al giorno", min_value=0, value=15)
+        num_spritz = st.number_input("Spritz venduti al giorno", min_value=0, value=20)
+        num_drink_base = st.number_input("Drink base venduti al giorno", min_value=0, value=10)
+        num_drink_premium = st.number_input("Drink premium venduti al giorno", min_value=0, value=5)
 
     # === Calcolo incassi per voce ===
     incasso_caffe = num_caffe * prezzo_caffe
