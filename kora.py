@@ -535,7 +535,7 @@ elif menu == "🔢 Simulazione":
     st.info("👉 Puoi esportare i dati manualmente o integrarli con Google Sheets/Excel per confronti più avanzati.")
 
 
-if menu == "🔍 Analisi Rischi e Opportunità":
+elif menu == "🔍 Analisi Rischi e Opportunità":
 
     st.header("🔍 Analisi Rischi e Opportunità")
     st.write("Il progetto nasce con l’obiettivo di proporre un format innovativo di bar e cucina vegetale, accessibile e contemporaneo, nel cuore del centro storico di Cuneo. "
