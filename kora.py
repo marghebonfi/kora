@@ -335,6 +335,10 @@ con un margine del 3%.")
         df_confronto = pd.DataFrame(data)
         st.table(df_confronto.set_index("Prodotto"))
 
+    st.header("Analisi di stagionalità")
+    st.markdown("Coming soon...")
+
+
 
 elif menu == "🔢 Simulazione":
 # === Sezione: Investimento iniziale ===
