@@ -8,10 +8,10 @@ st.set_page_config(page_title="kora", layout="centered")
 st.sidebar.title("☕ kora")
 menu = st.sidebar.radio(
     "Vai a:",
-    ["📘 Introduzione", "📊 Business Plan", "🔢 Simulazione"]
+    ["📘 Introduzione", "📊 Business Plan", "🔢 Simulazione", "🔍 Analisi Rischi e Opportunità"]
     ,index=0
 )
-st.sidebar.info("Versione 1.1.0 – 4 Luglio 2025")
+st.sidebar.info("Versione 1.1.1 – 4 Luglio 2025")
 
 # === Pagina: Introduzione ===
 if menu == "📘 Introduzione":
@@ -21,7 +21,7 @@ if menu == "📘 Introduzione":
     st.header("🥗 Cosa vogliamo realizzare")
     st.write("Il nostro locale sarà 100% vegetale, con prodotti provenienti da fornitori locali, colazioni, pranzi e aperitivi artigianali. Il piano superiore sarà uno spazio dedicato alla cultura, al co-working e galleria d’arte per artisti emergenti della zona. Sarà un luogo inclusivo, sostenibile, aperto alla comunità. Vogliamo offrire non solo cibo, ma anche cultura, ispirazione e condivisione.")
     st.write("""Puoi navigare tra:
-    \n- Il **business plan** (investimenti, costi fissi, break-even)
+    \n- Il **business plan** (investimenti, costi fissi, break-even, analisi stagionalità)
     \n- Una sezione di **simulazione dinamica** giornaliera
     """)
 
@@ -29,27 +29,25 @@ if menu == "📘 Introduzione":
 elif menu == "📊 Business Plan":
     st.title("📊 Business Plan")
 # === Costi Attrezzature ===
-    cucina = 100000
-    macchina_caffe = 13000
-    bancone_bar = 20000
-    utensili_vari = 7500
-    piatti_tazzine = 6600
-    arredamento = 35000
-    ristrutturazione = 30000
-    piastrelle_sanitari = 11500
-    impianti = 10000
-    infissi = 5000
-    termosifoni = 10000
-    architetti_pratiche = 8000
-    luci = 4000  # ipotesi media
+    voci = {
+        "Cucina": 100000,
+        "Macchina del caffè": 13000,
+        "Bancone bar": 20000,
+        "Utensili vari": 7500,
+        "Piatti e tazzine": 6600,
+        "Arredamento": 35000,
+        "Ristrutturazione": 30000,
+        "Piastrelle e sanitari": 11500,
+        "Impianti": 10000,
+        "Infissi": 5000,
+        "Termosifoni e posa": 10000,
+        "Architetti e pratiche": 8000,
+        "Luci (ipotesi media)": 4000
+    }
+
 
     # Calcolo della somma totale
-    totale_attrezzature = (
-        cucina + macchina_caffe + bancone_bar + utensili_vari +
-        piatti_tazzine + arredamento + ristrutturazione +
-        piastrelle_sanitari + impianti + infissi +
-        termosifoni + architetti_pratiche + luci
-    )
+    totale_attrezzature = sum(voci.values())
 
 
     # Costi fissi mensili
@@ -69,7 +67,11 @@ elif menu == "📊 Business Plan":
     st.write(f"Investimento iniziale ad oggi: {totale_attrezzature:,.2f}€")
     st.write(f"Rata mensile restituzione prestito: {restituzione_prestito:,.2f}€")
     st.write(f"Tempo restituzione prestito: {tempi_restituzione_prestito:.0f} anni")
-    st.markdown("---")
+    with st.expander("🔍 Dettaglio"):
+        for voce, valore in voci.items():
+            st.write(f"{voce}: {valore:>10,.2f}€")
+        st.write(f"**Totale: {totale_attrezzature:>10,.2f}€**")
+    st.divider()
 
     st.header("Dettaglio costi e coperti necessari")
     # Ricavo medio per coperto (approssimazione)
@@ -206,18 +208,17 @@ elif menu == "📊 Business Plan":
     # === Output ===
     # === Output dettagliato ===
 
-    st.write(f"Caffè:        {num_caffe} x {prezzo_caffe:,.2f}€ = {incasso_caffe:,.2f} €")
-    st.write(f"Cappuccini:   {num_cappuccini} x {prezzo_cappuccino:,.2f}€ = {incasso_cappuccino:,.2f} €")
-    st.write(f"Brioches:     {num_brioche} x {prezzo_brioche:,.2f}€ = {incasso_brioche:,.2f} €")
-    st.write(f"Pranzi:       {num_pranzi} x {prezzo_pranzo:,.2f}€ = {incasso_pranzi:,.2f} €")
-    st.write(f"Asporto:      {num_asporto} x {prezzo_asporto:,.2f}€ = {incasso_asporto:,.2f} €")
-    st.write(f"Birre:        {num_birre} x {prezzo_birra:,.2f}€ = {incasso_birre:,.2f} €")
-    st.write(f"Spritz:       {num_spritz} x {prezzo_spritz:,.2f}€ = {incasso_spritz:,.2f} €")
-    st.write(f"Drink base:   {num_drink_base} x {prezzo_drink_base:,.2f}€ = {incasso_drink_base:,.2f} €")
-    st.write(f"Drink premium:{num_drink_premium} x {prezzo_drink_premium:,.2f}€ = {incasso_drink_premium:,.2f} €")
-    st.write("------------------------------------------")
+    st.write(f"Caffè:           {num_caffe} x {prezzo_caffe:,.2f}€ = {incasso_caffe:,.2f} €")
+    st.write(f"Cappuccini:      {num_cappuccini} x {prezzo_cappuccino:,.2f}€ = {incasso_cappuccino:,.2f} €")
+    st.write(f"Brioches:        {num_brioche} x {prezzo_brioche:,.2f}€ = {incasso_brioche:,.2f} €")
+    st.write(f"Pranzi:          {num_pranzi} x {prezzo_pranzo:,.2f}€ = {incasso_pranzi:,.2f} €")
+    st.write(f"Asporto:         {num_asporto} x {prezzo_asporto:,.2f}€ = {incasso_asporto:,.2f} €")
+    st.write(f"Birre:           {num_birre} x {prezzo_birra:,.2f}€ = {incasso_birre:,.2f} €")
+    st.write(f"Spritz:          {num_spritz} x {prezzo_spritz:,.2f}€ = {incasso_spritz:,.2f} €")
+    st.write(f"Drink base:      {num_drink_base} x {prezzo_drink_base:,.2f}€ = {incasso_drink_base:,.2f} €")
+    st.write(f"Drink premium:   {num_drink_premium} x {prezzo_drink_premium:,.2f}€ = {incasso_drink_premium:,.2f} €")
     st.header ("Totale")
-    st.write(f"Totale Incasso Giornaliero: {incasso_totale:,.2f} €")
+    st.write(f"**Totale Incasso Giornaliero: {incasso_totale:,.2f} €**")
 
     #DETTAGLIO CON ADEGUAMENTO
 
@@ -298,11 +299,10 @@ con un margine del 3%.")
     st.write(f"Spritz:       {num_spritz_adeguamento} x {prezzo_spritz:,.2f}€ = {incasso_spritz_adeguamento:,.2f} €")
     st.write(f"Drink base:   {num_drink_base_adeguamento} x {prezzo_drink_base:,.2f}€ = {incasso_drink_base_adeguamento:,.2f} €")
     st.write(f"Drink premium:{num_drink_premium_adeguamento} x {prezzo_drink_premium:,.2f}€ = {incasso_drink_premium_adeguamento:,.2f} €")
-    st.write("------------------------------------------")
     st.header ("Totale")
-    st.write(f"Totale Incasso Giornaliero: {incasso_totale_adeguamento:,.2f} €")
+    st.write(f"**Totale Incasso Giornaliero: {incasso_totale_adeguamento:,.2f} €**")
 
-    if st.button("Dettaglio"):
+    with st.expander("🔍 Dettaglio"):
         # Confronto Incassi
         col1, col2 = st.columns(2)
         col1.metric("Incasso attuale", f"{incasso_totale:,.2f} €")
@@ -336,6 +336,7 @@ con un margine del 3%.")
         df_confronto = pd.DataFrame(data)
         st.table(df_confronto.set_index("Prodotto"))
 
+    st.divider()
     st.header("Proiezione mensile degli incassi")
     with st.expander("ℹ️ Informazioni sulla stagionalità"):
         st.markdown("""
@@ -532,3 +533,38 @@ elif menu == "🔢 Simulazione":
 
     st.markdown("---")
     st.info("👉 Puoi esportare i dati manualmente o integrarli con Google Sheets/Excel per confronti più avanzati.")
+
+
+if menu == "🔍 Analisi Rischi e Opportunità":
+
+    st.header("🔍 Analisi Rischi e Opportunità")
+    st.write("Il progetto nasce con l’obiettivo di proporre un format innovativo di bar e cucina vegetale, accessibile e contemporaneo, nel cuore del centro storico di Cuneo. "
+             "L’impostazione attuale prevede un’offerta focalizzata su colazioni, pranzi e aperitivi, "
+             "con una visione fresca, attenta alla qualità degli ingredienti, alla sostenibilità e all’estetica del servizio.")
+    st.write("#### ✅ Opportunità")
+    st.write("- Crescente attenzione del pubblico verso un'alimentazione sana e consapevole")
+    st.write("- Curiosità e apertura verso format nuovi e inclusivi, soprattutto tra giovani e professionisti")
+    st.write("- Posizione **strategica nel centro città**, con forte visibilità e flusso pedonale")
+    st.write("- **Eventi locali ricorrenti** (es. Fiera del Marrone, mercatini), che incrementano l’afflusso")
+    st.write("- Possibilità di **ampliare l’offerta**: colazioni prolungate, brunch, degustazioni, collaborazione con produttori locali")
+    st.write("#### ⚠️ Rischi e criticità")
+    st.write("- **Diffidenza iniziale** da parte di una parte del pubblico, legata alla novità del concept")
+    st.write("- **Alti costi di avviamento**, che richiedono un volume di affari costante")
+    st.write("- **Stagionalità dei consumi**, con alcuni mesi tendenzialmente più deboli (es. gennaio, novembre)")
+    st.write("- Presenza di **concorrenza consolidata** nel centro cittadino")
+    st.write("- **Rischio inflazione** sui prezzi delle materie prime")
+    st.write("#### 🎯 Strategia di mitigazione")
+    st.write("- **Posizionamento chiaro**, comunicazione inclusiva e attenzione all’esperienza del cliente")
+    st.write("- **Promozioni e formule di fidelizzazione**, in particolare nei mesi a minor traffico")
+    st.write("- **Adattamento dell’organizzazione** del personale ai flussi reali")
+    st.write("- **Collaborazioni con realtà del territorio** (associazioni, università, co-working, librerie) per aumentare la visibilità")
+
+    st.header("🚀 Sviluppo futuro e ampliamento dell’offerta")
+    st.write("Il presente piano si concentra esclusivamente sull’avviamento e la sostenibilità dell’attività di bistrot.")
+    st.write("A partire da gennaio 2026, si prevede una seconda fase di sviluppo, orientata alla valorizzazione della parte superiore del locale con l’obiettivo di trasformarla in un vero e proprio caffè letterario e spazio culturale. Le attività previste includono:")
+    st.write("- **Presentazioni di libri**, incontri con autori, eventi divulgativi")
+    st.write("- **Serate tematiche**, talk, musica dal vivo acustica e performance artistiche")
+    st.write("- **Workshop e laboratori creativi** in collaborazione con realtà locali")
+    st.write("- **Creazione di una programmazione culturale stabile**, pensata per coinvolgere una community variegata")
+
+    st.write("Questa evoluzione permetterà al locale di distinguersi ulteriormente, generando valore aggiunto sia economico che sociale. Gli investimenti necessari per questa fase sono già valutati nel business plan e ulteriori inestimenti saranno calcolati sulla base dei risultati dei primi mesi di attività.")
