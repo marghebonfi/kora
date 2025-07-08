@@ -42,7 +42,9 @@ elif menu == "📊 Business Plan":
         "Infissi": 5000,
         "Termosifoni e posa": 10000,
         "Architetti e pratiche": 8000,
-        "Luci (ipotesi media)": 4000
+        "Elettricista": 30000,
+        "Luci (ipotesi media)": 4000,
+        "Fondo di emergenza": 20000
     }
 
 
@@ -54,7 +56,7 @@ elif menu == "📊 Business Plan":
     costo_dipendenti = 8000
     costo_affitto = 2500
     costo_luce = 1500
-    restituzione_prestito = 2500
+    restituzione_prestito = 3000
     costo_materie_prime = 6200
     costi_fissi_mensili = costo_dipendenti + costo_affitto + costo_luce + restituzione_prestito + costo_materie_prime
     costi_fissi_annuali = costi_fissi_mensili * 12
