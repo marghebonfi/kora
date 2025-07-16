@@ -30,50 +30,147 @@ elif menu == "📊 Business Plan":
     st.title("📊 Business Plan")
 # === Costi Attrezzature ===
     voci = {
-        "Cucina": 100000,
-        "Macchina del caffè": 13000,
-        "Bancone bar": 20000,
-        "Utensili vari": 7500,
-        "Piatti e tazzine": 6600,
-        "Arredamento": 35000,
-        "Ristrutturazione": 30000,
-        "Piastrelle e sanitari": 11500,
-        "Impianti": 10000,
-        "Infissi": 5000,
-        "Termosifoni e posa": 10000,
-        "Architetti e pratiche": 8000,
-        "Elettricista": 30000,
-        "Luci (ipotesi media)": 4000,
-        "Fondo di emergenza": 20000
+        "1. Licenza + debiti": 50000,
+        "2. Cucina": 100000,
+        "3. Macchina del caffè": 13000,
+        "4. Bancone bar": 20000,
+        "5. Utensili vari": 7500,
+        "6. Piatti e tazzine": 6600,
+        "7. Arredamento": 35000,
+        "8. Ristrutturazione - muratore e sabbiatore": 30300,
+        "9. Piastrelle e sanitari": 9600,
+        "10. Idraulico + impianti ": 48190,
+        "11. Fabbro": 5000,
+        "12. Contatore": 4000,
+        "13. Infissi": 5000,
+        "14. Architetti e pratiche": 8000,
+        "15. Progetto impianto elettrico":3000,
+        "16. Elettricista": 35000,
+        "17. Pannelli fono-assorbenti": 10000,
+        "18. Insegna legno + ripiani": 5000,
+        "19. Staprol" : 5000,
+        "20. Fondo di emergenza": 20000
     }
 
+    prestiti = {
+        "Ile + Vale": 40000,
+        "Pier": 50000,
+        "Tita": 21600,
+        "Pie": 15000,
+        "Pepi": 100000,
+        "Banca": 150000
+    }
+
+    voci_reali = {
+        "1. Licenza + debiti": 50000,
+        "2. Cucina (ipotetico)": 100000,
+        "3. Macchina del caffè": 13054,
+        "4. Bancone bar (ipotetico)": 20000,
+        "5. Utensili vari": 7564.33,
+        "6. Piatti e tazzine": 6600,
+        "7. Arredamento": 35242.90,
+        "8. Ristrutturazione - muratore e sabbiatore": 30300,
+        "9. Piastrelle e sanitari": 9513.29,
+        "10. Idraulico + impianti (ipotetico)": 48190,
+        "11. Fabbro (ipotetico)": 5000,
+        "12. Contatore (ipotetico)": 4000,
+        "13. Infissi (ipotetico)": 5000,
+        "14. Architetti e pratiche": 8000,
+        "15. Progetto impianto elettrico":3000,
+        "16. Elettricista (ipotetico)": 35000,
+        "17. Pannelli fono-assorbenti (ipotetico)": 10000,
+        "18. Insegna legno + ripiani (ipotetico)": 5000,
+        "19. Staprol" : 5000,
+        "20. Fondo di emergenza": 20000
+    }
+
+    voci_pagate = {
+    "1. Licenza + debiti": 37500,
+    "2. Cucina - acconto": 45000,
+    "3. Macchina del caffè - acconto": 6527,
+    #"4. Bancone bar": 20000,
+    "5. Utensili vari - acconto": 4064.33,
+    "6. Piatti e tazzine - acconto": 3300,
+    "7. Arredamento - acconto": 17621.44,
+    "8. Ristrutturazione - acconto": 2500,
+    "9. Piastrelle e sanitari - acconto": 4331,
+    #"10. Impianti idraulici (ipotetico)": 10000,
+    #"11. Fabbro (ipotetico)": 5000,
+    #"12. Contatore (ipotetico)": 5000,
+    #"13. Infissi (ipotetico)": 5000,
+    #"14. Architetti e pratiche": 8000,
+    #"15. Progetto impianto elettrico":3000,
+    #"16. Elettricista (ipotetico)": 30000,
+    #"17. Luci (ipotesi media)": 4000,
+    #"18. Pannelli fono-assorbenti (ipotetico)": 10000,
+    #"19. Insegna legno + ripiani (ipotetico)": 5000,
+    #"20. Staprol" : 5000,
+    #"21. Cambio societario": 5000,
+    #"22. Fondo di emergenza": 20000
+    }
 
     # Calcolo della somma totale
     totale_attrezzature = sum(voci.values())
+    totale_preventivi = sum(voci_reali.values())
+    totale_pagamenti = sum(voci_pagate.values())
 
 
     # Costi fissi mensili
-    costo_dipendenti = 8000
-    costo_affitto = 2500
-    costo_luce = 1500
-    restituzione_prestito = 3000
-    costo_materie_prime = 6200
-    costi_fissi_mensili = costo_dipendenti + costo_affitto + costo_luce + restituzione_prestito + costo_materie_prime
+    costi_mensili = {
+    "Costo dipendenti" : 8000,
+    "Costo affitto" : 2500,
+    "Costo luce" : 1500,
+    "Restituzione prestito" : 3000,
+    "Costo materie prime" : 6200,
+    "Cassa" : 150
+    }
+    restituzione_prestito = costi_mensili.get("Restituzione prestito")
+    costi_fissi_mensili = sum(costi_mensili.values())
     costi_fissi_annuali = costi_fissi_mensili * 12
+    tasso_annuo = 0.06
+    anni = 8
+    rate = anni * 12
+    tasso_mensile = tasso_annuo / 12
+
+    # Formula rata mensile
+    rata = prestiti.get("Banca") * (tasso_mensile * (1 + tasso_mensile) ** rate) / ((1 + tasso_mensile) ** rate - 1)
+
 
     # Tempi restituzione prestiti
-    tempi_restituzione_prestito = totale_attrezzature/restituzione_prestito/12
+    tempi_restituzione_prestito = (sum(prestiti.values())-prestiti.get("Banca")-prestiti.get("Pie")-prestiti.get("Tita")-prestiti.get("Pier"))/(restituzione_prestito - rata)/12
 
     st.header("Investimento iniziale")
 
-    st.write(f"Investimento iniziale ad oggi: {totale_attrezzature:,.2f}€")
-    st.write(f"Rata mensile restituzione prestito: {restituzione_prestito:,.2f}€")
-    st.write(f"Tempo restituzione prestito: {tempi_restituzione_prestito:.0f} anni")
+    col1, col2 = st.columns(2)
+
+    col1.write(f"Investimento iniziale ad oggi: {totale_attrezzature:,.2f}€")
+    col1.write(f"Rata mensile restituzione prestito Intesa con tasso 6% per 8 anni: {rata:,.2f}€")
+    col1.write(f"Rata mensile restituzione prestito restante: {restituzione_prestito - rata:,.2f}€")
+    col1.write(f"Tempo restituzione prestito: {tempi_restituzione_prestito:.0f} anni")
+
+    col2.write(f"Prestiti totali: {sum(prestiti.values()): ,.2f}€")
+    for persona, prestito in prestiti.items():
+        col2.write(f"{persona}: {prestito:>10,.2f}€")
+
+    st.write(f"Ulteriori prestiti necessari: {totale_attrezzature - sum(prestiti.values()): ,.2f}€")
+
     with st.expander("🔍 Dettaglio"):
+        st.write("#### Investimento ipotetico")
         for voce, valore in voci.items():
             st.write(f"{voce}: {valore:>10,.2f}€")
         st.write(f"**Totale: {totale_attrezzature:>10,.2f}€**")
-    st.divider()
+        st.divider()
+        st.write("#### Investimento con preventivi reali")
+        for voce, valore in voci_reali.items():
+            st.write(f"{voce}: {valore:>10,.2f}€")
+        st.write(f"**Totale: {totale_preventivi:>10,.2f}€**")
+        st.divider()
+        st.write("#### Pagamenti già effettuati")
+        for voce, valore in voci_pagate.items():
+            st.write(f"{voce}: {valore:>10,.2f}€")
+        st.write(f"**Totale: {totale_pagamenti:>10,.2f}€**")
+        st.divider()
+        st.write(f"**Rimanente da pagare: {(totale_preventivi - totale_pagamenti):>10,.2f}€**" )
 
     st.header("Dettaglio costi e coperti necessari")
     # Ricavo medio per coperto (approssimazione)
