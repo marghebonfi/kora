@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 st.set_page_config(page_title="kora", layout="centered")
 
@@ -11,7 +12,7 @@ menu = st.sidebar.radio(
     ["📘 Introduzione", "📊 Business Plan", "🔢 Simulazione", "🔍 Analisi Rischi e Opportunità"]
     ,index=0
 )
-st.sidebar.info("Versione 1.1.1 – 4 Luglio 2025")
+st.sidebar.info("Versione 1.1.3 – 11 Agosto 2025")
 
 # === Pagina: Introduzione ===
 if menu == "📘 Introduzione":
@@ -40,12 +41,12 @@ elif menu == "📊 Business Plan":
         "8. Ristrutturazione - muratore e sabbiatore": 30300,
         "9. Piastrelle e sanitari": 9600,
         "10. Idraulico + impianti ": 48190,
-        "11. Fabbro": 5000,
+        "11. Fabbro": 7515.20,
         "12. Contatore": 4000,
         "13. Infissi": 5000,
         "14. Architetti e pratiche": 8000,
-        "15. Progetto impianto elettrico":3000,
-        "16. Elettricista": 35000,
+        "15. Progetto impianto elettrico": 3000,
+        "16. Elettricista": 42700,
         "17. Pannelli fono-assorbenti": 10000,
         "18. Insegna legno + ripiani": 5000,
         "19. Staprol" : 5000,
@@ -63,29 +64,48 @@ elif menu == "📊 Business Plan":
 
     voci_reali = {
         "1. Licenza + debiti": 50000,
-        "2. Cucina (ipotetico)": 100000,
-        "3. Macchina del caffè": 13054,
-        "4. Bancone bar (ipotetico)": 20000,
-        "5. Utensili vari": 7564.33,
+        "2. Cucina": 78145.00,
+        "3. Macchina del caffè": 10700,
+        "4. Bancone bar (ipotetico)": 15000,
+        "5. Utensili vari": 6450.79,
         "6. Piatti e tazzine": 6600,
-        "7. Arredamento": 35242.90,
-        "8. Ristrutturazione - muratore e sabbiatore": 30300,
-        "9. Piastrelle e sanitari": 9513.29,
-        "10. Idraulico + impianti (ipotetico)": 48190,
-        "11. Fabbro (ipotetico)": 5000,
-        "12. Contatore (ipotetico)": 4000,
-        "13. Infissi (ipotetico)": 5000,
+        "7. Arredamento": 28887.60,
+        "8. Ristrutturazione": 30000,
+        "9. Piastrelle e sanitari": 7797.78,
+        "10. Idraulico + impianti": 46500.00,
+        "11. Fabbro": 2415.60,
+        "12. Contatore (ipotetico)": 2620,
+        "13. Infissi": 3406.05,
         "14. Architetti e pratiche": 8000,
-        "15. Progetto impianto elettrico":3000,
-        "16. Elettricista (ipotetico)": 35000,
-        "17. Pannelli fono-assorbenti (ipotetico)": 10000,
-        "18. Insegna legno + ripiani (ipotetico)": 5000,
-        "19. Staprol" : 5000,
-        "20. Fondo di emergenza": 20000
+        "15. Progetto impianto elettrico" : 2310,
+        "16. Elettricista": 38800,
+        "17. Insegna legno + ripiani (ipotetico)": 5000,
+        "18. Staprol" : 4700,
+    }
+
+    voci_iva = {
+        "1. Licenza + debiti": 50000,
+        "2. Cucina": 95336.90,
+        "3. Macchina del caffè": 13054,
+        "4. Bancone bar (ipotetico)": 15000,
+        "5. Utensili vari": 7869.96,
+        "6. Piatti e tazzine": 6600,
+        "7. Arredamento": 35242.88,
+        "8. Ristrutturazione": 36600,
+        "9. Piastrelle e sanitari": 9513.29,
+        "10. Idraulico + impianti": 56730.00,
+        "11. Fabbro": 2940.20,
+        "12. Contatore (ipotetico)": 3196.4,
+        "13. Infissi": 4155.39,
+        "14. Architetti e pratiche": 8000,
+        "15. Progetto impianto elettrico" : 2310,
+        "16. Elettricista": 47336,
+        "17. Insegna legno + ripiani (ipotetico)": 5000,
+        "18. Staprol" : 5734
     }
 
     voci_pagate = {
-    "1. Licenza + debiti": 37500,
+    "1. Licenza + debiti": 42641.26,
     "2. Cucina - acconto": 45000,
     "3. Macchina del caffè - acconto": 6527,
     #"4. Bancone bar": 20000,
@@ -93,7 +113,7 @@ elif menu == "📊 Business Plan":
     "6. Piatti e tazzine - acconto": 3300,
     "7. Arredamento - acconto": 17621.44,
     "8. Ristrutturazione - acconto": 2500,
-    "9. Piastrelle e sanitari - acconto": 4331,
+    "9. Piastrelle e sanitari - acconto": 8678.48,
     #"10. Impianti idraulici (ipotetico)": 10000,
     #"11. Fabbro (ipotetico)": 5000,
     #"12. Contatore (ipotetico)": 5000,
@@ -109,10 +129,19 @@ elif menu == "📊 Business Plan":
     #"22. Fondo di emergenza": 20000
     }
 
+    spese_extra = {
+        "Sacchetti caffè": 1308.46,
+        "Dosatori olio": 85.40,
+        "Cantiere": 344.30
+    }
+
     # Calcolo della somma totale
     totale_attrezzature = sum(voci.values())
     totale_preventivi = sum(voci_reali.values())
+    totale_iva = sum(voci_iva.values())
     totale_pagamenti = sum(voci_pagate.values())
+    totale_prestiti = sum(prestiti.values())
+    totale_extra = sum(spese_extra.values())
 
 
     # Costi fissi mensili
@@ -120,7 +149,7 @@ elif menu == "📊 Business Plan":
     "Costo dipendenti" : 8000,
     "Costo affitto" : 2500,
     "Costo luce" : 1500,
-    "Restituzione prestito" : 3000,
+    "Restituzione prestito" : 3200,
     "Costo materie prime" : 6200,
     "Cassa" : 150
     }
@@ -137,40 +166,78 @@ elif menu == "📊 Business Plan":
 
 
     # Tempi restituzione prestiti
-    tempi_restituzione_prestito = (sum(prestiti.values())-prestiti.get("Banca")-prestiti.get("Pie")-prestiti.get("Tita")-prestiti.get("Pier"))/(restituzione_prestito - rata)/12
+    tempi_restituzione_prestito = (totale_prestiti-prestiti.get("Banca")-prestiti.get("Pie")-prestiti.get("Tita")-prestiti.get("Pier"))/(restituzione_prestito - rata)/12
+
+    prestito_invitalia = (totale_preventivi - 0.2*voci_reali.get('2. Cucina'))*0.9
+    rata_mensile_prestito_invitalia = (prestito_invitalia/10)/12
 
     st.header("Investimento iniziale")
 
     col1, col2 = st.columns(2)
 
-    col1.write(f"Investimento iniziale ad oggi: {totale_attrezzature:,.2f}€")
+    col1.write(f"Investimento iniziale ad oggi: {totale_iva:,.2f}€")
     col1.write(f"Rata mensile restituzione prestito Intesa con tasso 6% per 8 anni: {rata:,.2f}€")
     col1.write(f"Rata mensile restituzione prestito restante: {restituzione_prestito - rata:,.2f}€")
     col1.write(f"Tempo restituzione prestito: {tempi_restituzione_prestito:.0f} anni")
+    col1.write(f"Prestito Invitalia (togliendo il 20% delle attrezzature a fondo perduto e il 10% fornito da noi): {prestito_invitalia:,.2f}€")
+    col1.write(f"Rata mensile restituzione prestito in 10 anni a tasso 0: {rata_mensile_prestito_invitalia:,.2f}€")
 
-    col2.write(f"Prestiti totali: {sum(prestiti.values()): ,.2f}€")
+    col2.write(f"Prestiti totali: {totale_prestiti: ,.2f}€")
     for persona, prestito in prestiti.items():
         col2.write(f"{persona}: {prestito:>10,.2f}€")
 
-    st.write(f"Ulteriori prestiti necessari: {totale_attrezzature - sum(prestiti.values()): ,.2f}€")
+    st.write(f"Ulteriori prestiti necessari: {totale_iva - totale_prestiti: ,.2f}€")
+    st.write(f"Totale investimento senza iva: {totale_preventivi: ,.2f}€")
+    st.write(f"Totale iva: {totale_iva - totale_preventivi: ,.2f}€")
+    st.write(f"Spese extra: {totale_extra: ,.2f}€")
 
     with st.expander("🔍 Dettaglio"):
-        st.write("#### Investimento ipotetico")
-        for voce, valore in voci.items():
-            st.write(f"{voce}: {valore:>10,.2f}€")
-        st.write(f"**Totale: {totale_attrezzature:>10,.2f}€**")
-        st.divider()
-        st.write("#### Investimento con preventivi reali")
-        for voce, valore in voci_reali.items():
-            st.write(f"{voce}: {valore:>10,.2f}€")
-        st.write(f"**Totale: {totale_preventivi:>10,.2f}€**")
-        st.divider()
+    #    col1, col3, col4 = st.columns([4, 2, 2])
+    #    col1.write(f"**Voci**")
+    #    col3.write(f"**Investimento-iva**")
+    #    col4.write(f"**Iva 22%**")
+    #    for voce in voci_reali.keys():
+    #        iva = voci_iva.get(voce) - voci_reali.get(voce)
+    #        col1.write(f"{voce}: {voci_reali.get(voce):>10,.2f}€")
+    #        col3.write(f"{voci_iva.get(voce):>10,.2f}€")
+    #        if iva == 0:
+    #            col4.write(f"-")
+    #        else:
+    #            col4.write(f"{iva :>10,.2f}€")
+    #    col3.write(f"**Totale: {totale_iva:>10,.2f}€**")
+    #    col4.write(f"**Totale: {totale_iva - totale_preventivi:>10,.2f}€**")
+        dati = []
+        for voce in voci_reali.keys():
+            netto = voci_reali[voce]
+            lordo = voci_iva.get(voce)
+            iva = lordo - netto if lordo and netto else 0
+            dati.append([voce, netto, lordo, iva if iva != 0 else np.nan])
+
+        df = pd.DataFrame(dati, columns=["Voce", "Investimento (netto)", "Investimento (lordo)", "IVA 22%"])
+
+        # Totali
+        totale_netto = sum(voci_reali.values())
+        totale_lordo = sum(voci_iva.values())
+        totale_iva = totale_lordo - totale_netto
+
+        # Riga totale
+        df.loc["Totale"] = ["", totale_netto, totale_lordo, totale_iva]
+        df= df.set_index("Voce")
+        st.dataframe(
+            df.style.format({
+                "Investimento (netto)": "{:,.2f}€",
+                "Investimento (lordo)": "{:,.2f}€",
+                "IVA 22%": "{:,.2f}€"
+            }),
+            use_container_width=True,
+            height=400
+            )
         st.write("#### Pagamenti già effettuati")
         for voce, valore in voci_pagate.items():
             st.write(f"{voce}: {valore:>10,.2f}€")
         st.write(f"**Totale: {totale_pagamenti:>10,.2f}€**")
         st.divider()
-        st.write(f"**Rimanente da pagare: {(totale_preventivi - totale_pagamenti):>10,.2f}€**" )
+        st.write(f"**Rimanente da pagare: {(totale_preventivi - totale_iva):>10,.2f}€**" )
 
     st.header("Dettaglio costi e coperti necessari")
     # Ricavo medio per coperto (approssimazione)
@@ -203,11 +270,6 @@ elif menu == "📊 Business Plan":
     coperti_giornalieri_necessari = coperti_annuali_necessari / 250
     incasso_medio_giornaliero = coperti_giornalieri_necessari * scontrino_medio
     incasso_medio_mensile = incasso_medio_giornaliero * 250 / 12
-
-
-
-
-
 
     # Output
 
