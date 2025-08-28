@@ -89,11 +89,13 @@ if auth_status:
         }
 
         prestiti = {
-            "Ile + Vale": 40000,
+            "Ile + Vale": 45000,
             "Pier": 50000,
             "Tita": 21600,
             "Pie": 15000,
+            "Elena": 20000,
             "Pepi": 100000,
+            "Ulteriori investimenti Pie e Marghe":50000,
             "Banca": 200000
         }
 
