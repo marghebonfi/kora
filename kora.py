@@ -47,7 +47,7 @@ if auth_status:
         ["📘 Introduzione", "📊 Business Plan", "🔢 Simulazione", "🔍 Analisi Rischi e Opportunità"]
         ,index=0
     )
-    st.sidebar.info("Versione 1.1.3 – 11 Agosto 2025")
+    st.sidebar.info("Versione 1.1.4 – 28 Agosto 2025")
 
     # === Pagina: Introduzione ===
     if menu == "📘 Introduzione":
@@ -769,8 +769,8 @@ if auth_status:
 
         st.write("Questa evoluzione permetterà al locale di distinguersi ulteriormente, generando valore aggiunto sia economico che sociale. Gli investimenti necessari per questa fase sono già valutati nel business plan e ulteriori inestimenti saranno calcolati sulla base dei risultati dei primi mesi di attività.")
 
-elif authentication_status is False:
+elif auth_status is False:
     st.error("Username o password errati")
-elif authentication_status is None:
+elif auth_status is None:
     st.warning("Inserisci username e password")
 
